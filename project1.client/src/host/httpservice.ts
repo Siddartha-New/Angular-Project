@@ -11,9 +11,9 @@ const httpOptions = {
   providedIn: 'root'
 })
 
-export class Host {
+export class httpservice {
   result: any;
-  api = "https://localhost:7126/Map";
+  api = "https://localhost:7126/Host";
   constructor(private http: HttpClient) {
 
   }
@@ -45,7 +45,9 @@ export class Host {
         }
       );
     }
-    catch (ex) {
+    catch (ex)
+    {
+
     }
     return this.result;
   }

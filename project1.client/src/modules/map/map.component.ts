@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { loadModules } from "esri-loader/dist/esm/modules";
-import { Host } from "../../host/hosting";
+import { httpservice } from "../../host/httpservice";
+
 
 @Component({
   selector: 'app-map',
@@ -120,7 +121,7 @@ import { Host } from "../../host/hosting";
 export class MapComponent implements OnInit {
   @ViewChild("mapViewDiv", { static: true }) private mapViewEl!: ElementRef;
   busroute: BusRoutePoint[] = [];
-  constructor(private hostservice: Host) { }
+  constructor(private hostservice: httpservice) { }
 
   mapView: any;
   graphicsLayer: any;

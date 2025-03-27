@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { loadModules } from "esri-loader/dist/esm/modules";
+import {httpservice } from "../../host/httpservice";
 
 @Component({
   selector: 'app-chatbot',
@@ -15,14 +16,15 @@ export class chatbotComponent implements OnInit {
   messages: { text: string; sender: string }[] = [];
   userInput: string = '';
 
-  constructor() { }
+  constructor(private service: httpservice) { }
 
   sendMessage() {
+
     if (!this.userInput.trim()) return;
 
     // Add user message
     this.messages.push({ text: this.userInput, sender: 'user' });
-
+    this.service.Insert("CommponetClass", "tets", "fetch");
     // Generate bot response
     setTimeout(() => {
       const botReply = this.getBotResponse(this.userInput);

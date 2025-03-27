@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Route, Router } from '@angular/router';
-import { Host } from '../host/hosting';
+import { httpservice } from '../host/httpservice';
 import { MapComponent } from '../modules/map/map.component';
 
 
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   @ViewChild(MapComponent) mapComponent!: MapComponent;
   list: any;
   menus: any;
-  constructor(private http: HttpClient, private route: Router, private hostservice: Host) { }
+  constructor(private http: HttpClient, private route: Router, private hostservice: httpservice) { }
 
   ngOnInit() {
     this.menus = [
