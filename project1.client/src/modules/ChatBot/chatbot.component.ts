@@ -24,7 +24,7 @@ export class chatbotComponent implements OnInit {
 
     // Add user message
     this.messages.push({ text: this.userInput, sender: 'user' });
-    this.service.Insert("CommponetClass", "tets", "fetch");
+    this.service.Insert("CommponetClass", this.userInput, "insert");
     // Generate bot response
     setTimeout(() => {
       const botReply = this.getBotResponse(this.userInput);
