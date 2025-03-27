@@ -19,6 +19,8 @@ namespace Project1.Server.BussinessLayer
             new BusRoutePoint { Lat = 20.6250, Lon = 78.2010 },
             new BusRoutePoint { Lat = 2.6250, Lon = 12.92010 },
 
+            //
+
         };
 
             // Convert to JSON string
