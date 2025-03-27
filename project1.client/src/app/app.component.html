@@ -1,11 +1,24 @@
 
 <router-outlet></router-outlet>
-<div style="align-items: center; margin-top: 190px">
+<!--<div style="align-items: center; margin-top: 190px">
   <button (click)="mapfun()">
   <i class="fa fa-map-marker-alt"></i> ClickMap
   </button>
 </div>
 
-<p >{{list}}</p>
+<p >{{list}}</p>-->
+
+<div class="menu-container" *ngIf="!disable">
+  <ul class="menu-list">
+    <li *ngFor="let menu of menus" class="menu-item">
+      <a [routerLink]="menu.url" class="menu-link" (click)="Tabclick(menu.url)">
+        <img [src]="menu.icon" width="20">
+        {{ menu.title }}
+      </a>
+    </li>
+  </ul>
+</div>
+
+
 
 

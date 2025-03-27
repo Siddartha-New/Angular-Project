@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MapComponent } from '../modules/map.component';
+import { AppComponent } from '../app/app.component';
+import { chatbotComponent } from '../modules/ChatBot/chatbot.component';
+import { DashBoardComponent,  } from '../modules/map.component';
+import { MapComponent } from '../modules/map/map.component';
 
 
 const routes: Routes = [
-  { path: 'map', component: MapComponent },  // Route for MapComponent
-  { path: '', redirectTo: '', pathMatch: 'full' } // Redirect to map by default
+  { path: 'map', component: MapComponent },
+  { path: 'dashboard', component: DashBoardComponent },
+  { path: 'chat', component: chatbotComponent },// Route for MapComponent
+ /* { path: '', redirectTo: '', pathMatch: 'full',component :AppComponent } */// Redirect to map by default
 ];
 
 @NgModule({

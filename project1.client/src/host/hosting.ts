@@ -13,7 +13,7 @@ const httpOptions = {
 
 export class Host {
   result: any;
-  api = "https://localhost:7126/API";
+  api = "https://localhost:7126/Map";
   constructor(private http: HttpClient) {
 
   }
@@ -21,7 +21,7 @@ export class Host {
   Fetch(classname:any,obj:any,type:any): any {
     /* <WeatherForecast[]>*/
     try {
-      this.http.get(this.api+"?classname=" + classname+"&obj=" + obj + "&type=" + type, httpOptions).subscribe(
+      this.http.get(this.api + "?classname=" + classname+"&obj=" + obj + "&type=" + type, httpOptions).subscribe(
         (response) => {
           this.result = response;
         },

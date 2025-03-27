@@ -1,4 +1,4 @@
-﻿:host {
+:host {
     max-width: 1280px;
     padding: 2rem;
     text-align: center;
@@ -12,3 +12,30 @@ th, td {
 table {
     margin: 0 auto;
 }
+.menu-container {
+  display: flex;
+  justify-content: center; /* Align center */
+}
+
+.menu-list {
+  display: flex; /* Makes list items inline */
+  list-style: none; /* Removes bullet points */
+  padding: 0;
+  margin: 0;
+  margin-top: 257px;
+}
+
+.menu-item {
+  margin: 0 15px; /* Space between menu items */
+}
+
+.menu-link {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+}
+
+  .menu-link img {
+    margin-right: 5px;
+  }

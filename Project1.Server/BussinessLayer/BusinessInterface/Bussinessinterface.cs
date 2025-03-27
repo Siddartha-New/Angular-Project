@@ -6,6 +6,5 @@
         public string Insert(object obj);
         public string Update(object obj);
 
-
     }
 }

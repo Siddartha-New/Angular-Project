@@ -1,17 +1,19 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { loadModules } from "esri-loader/dist/esm/modules";
+import { Host } from "../../host/hosting";
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html', // Ensure the correct file name
 })
+
 //export class MapComponent implements OnInit {
 //  @ViewChild('mapViewDiv', { static: true }) private mapViewEl!: ElementRef;
 
 //  location1: string = '';  // First location input
 //  location2: string = '';  // Second location input
 //  distance: number | null = null; // Distance in kilometers
-//  mapView: any;
+//  mapView: anyany;
 //  graphicsLayer: any;
  
 
@@ -115,28 +117,27 @@ import { loadModules } from "esri-loader/dist/esm/modules";
   
 //}
 
-export class DashBoardComponent implements OnInit {
+export class MapComponent implements OnInit {
   @ViewChild("mapViewDiv", { static: true }) private mapViewEl!: ElementRef;
+  busroute: BusRoutePoint[] = [];
+  constructor(private hostservice: Host) { }
 
   mapView: any;
   graphicsLayer: any;
   busGraphic: any;
   busRoute = [
-    { lat: 20.5937, lon: 78.9629 },
-    { lat: 20.5950, lon: 78.9700 },
-    { lat: 20.6000, lon: 78.9800 },
-    { lat: 20.6100, lon: 78.9900 }, 
+    { lat: 20.5937, lon: 78.9629 }
   ];
   index = 0;
    
   async ngOnInit() {
+
     const [Map, MapView, GraphicsLayer, Graphic] = await loadModules([
       "esri/Map",
       "esri/views/MapView",
       "esri/layers/GraphicsLayer",
       "esri/Graphic",
     ]);
-
     const map = new Map({ basemap: "streets-navigation-vector" });
     this.mapView = new MapView({
       container: this.mapViewEl.nativeElement,
@@ -151,25 +152,41 @@ export class DashBoardComponent implements OnInit {
     this.busGraphic = new Graphic({
       geometry: { type: "point", longitude: this.busRoute[0].lon, latitude: this.busRoute[0].lat },
       symbol: {
-        type: "simple-marker", color: "Green", size: "12px", Symbol:"D:\Sample Poc's\Project1\project1.client\src\assets\bus.png"},
+        type: "simple-marker", color: "Green", size: "12px", Symbol: 'assets/bus.png'
+      },
     });
+
+    
   
     this.graphicsLayer.add(this.busGraphic);
-    this.trackBus();
+    //this.trackBus();
   }
 
-  trackBus() {
+  async trackBus() {
     setInterval(() => {
-      if (this.index < this.busRoute.length - 1) {
-        this.index++;
-        this.updateBusLocation(this.busRoute[this.index].lat, this.busRoute[this.index].lon);
-      }
-    }, 1000); // Moves every 3 seconds
+      let data = this.hostservice.Fetch("CommponetClass", "payload", "fetch");
+      this.busroute = JSON.parse(data);
+      this.busroute.forEach((point) => {
+          this.updateBusLocation(point.Lat, point.Lon)
+      }, 5000)
+    });
   }
 
-  updateBusLocation(lat: number, lon: number) {
-    this.busGraphic.geometry = { type: "point", longitude: lon, latitude: lat };
-    this.mapView.goTo({ center: [lon, lat], zoom: 12 });
+  async updateBusLocation(lat: any, lon: number) {
+    this.busGraphic.geometry = { type: "point", longitude: lon + "00", latitude: lat + "00" };
+    try {
+      // Wait for the map animation to complete
+      await this.mapView.goTo({ center: [lon, lat], zoom: 12 }, { animate: true });
+    } catch (error)
+    {
+      
+    }
+   
   }
+
+}
+interface BusRoutePoint {
+  Lat: any;
+  Lon: any;
 }
 

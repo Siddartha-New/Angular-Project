@@ -6,7 +6,7 @@ using Project1.Server.BussinessLayer.Interface;
 
 [ApiController]
 [Route("[controller]")]
-public class APIController : ControllerBase
+public class MapController : ControllerBase
 {
     [HttpGet]
     public IActionResult Get(string className, string obj,string type)
