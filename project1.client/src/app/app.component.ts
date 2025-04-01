@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     this.menus = [
      /* { title: 'Dashboard', url: '/dashboard', icon: 'assets/bus.png' },*/
       { title: 'Map', url: '/map', icon: 'assets/bus.png' },
-      { title: 'Chat', url: '/chat', icon: 'assets/bus.png' }
+      { title: 'Chat', url: '/chat', icon: 'assets/robot.png' }
     ];
   }
 

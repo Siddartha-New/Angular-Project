@@ -21,15 +21,19 @@ public class HostController : ControllerBase
             {
                 case "insert":
                     instance = new CommponetClass();
-                    instance.Insert(obj);
+                    result = instance.Insert(obj);
                     break;
                 case "Update":
                     instance = new CommponetClass();
-                    instance.Update(obj);
+                    result = instance.Update(obj);
                     break;
                 case "fetch":
                     instance = new CommponetClass();
                     result =  instance.fetch(obj);
+                    break;
+                case "botreply":
+                    instance = new CommponetClass();
+                    result = instance.botreply(obj);
                     break;
             }
 

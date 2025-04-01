@@ -6,6 +6,25 @@ namespace Project1.Server.BussinessLayer
 {
     public class CommponetClass : IBussinessinterface
     {
+        public string botreply(string obj)
+        {
+            List<BotResponse> response = new List<BotResponse>();
+            response.Add(new BotResponse { message = "Test" });
+
+            string botReply = obj.ToLower() switch
+            {
+                "hello" => "Hello! How can I assist you today?",
+                "hi" => "Hi there! What can I do for you?",
+                "hey" => "Hey! Need any help?",
+                "good morning" => "Good morning! Hope you have a great day!",
+                "good afternoon" => "Good afternoon! How's your day going?",
+                "good evening" => "Good evening! What can I assist you with?",
+                _ => "Hello! How may I help you?"
+            };
+
+            return botReply;
+        }
+
         public string fetch(object payload)
         {
             List<BusRoutePoint> busRoute = new List<BusRoutePoint>
@@ -32,7 +51,7 @@ namespace Project1.Server.BussinessLayer
 
         public string Insert(object obj)
         {
-            throw new NotImplementedException();
+            return obj.ToString();
         }
 
         public string Update(object obj)
@@ -44,6 +63,12 @@ namespace Project1.Server.BussinessLayer
     {
         public double Lat { get; set; }
         public double Lon { get; set; }
+    }
+
+    public class BotResponse
+    {
+        public string message { get; set; }
+        
     }
 
 }

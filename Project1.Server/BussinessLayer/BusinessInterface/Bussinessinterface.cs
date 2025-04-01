@@ -6,5 +6,7 @@
         public string Insert(object obj);
         public string Update(object obj);
 
+        public string botreply(string obj);
+
     }
 }

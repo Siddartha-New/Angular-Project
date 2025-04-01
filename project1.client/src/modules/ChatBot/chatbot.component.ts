@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { loadModules } from "esri-loader/dist/esm/modules";
 import {httpservice } from "../../host/httpservice";
+import { response } from "../../models/response";
+
 
 @Component({
   selector: 'app-chatbot',
@@ -9,6 +11,8 @@ import {httpservice } from "../../host/httpservice";
 })
 
 export class chatbotComponent implements OnInit {
+  payload: response [] = [];
+    openbox: boolean = false;
 
   async ngOnInit() {
 
@@ -17,33 +21,21 @@ export class chatbotComponent implements OnInit {
   userInput: string = '';
 
   constructor(private service: httpservice) { }
-
+  chatbotopen() {
+    this.openbox = true;
+  }
   sendMessage() {
 
     if (!this.userInput.trim()) return;
-
-    // Add user message
     this.messages.push({ text: this.userInput, sender: 'user' });
-    this.service.Insert("CommponetClass", this.userInput, "insert");
-    // Generate bot response
+    var response = this.service.Insert("CommponetClass", this.userInput, "botreply");
     setTimeout(() => {
-      const botReply = this.getBotResponse(this.userInput);
-      this.messages.push({ text: botReply, sender: 'bot' });
-    }, 1000);
-
-    // Clear input
+      if (response != undefined) {
+        this.messages.push({ text: response, sender: 'bot' });
+      }
+    },1000);
     this.userInput = '';
   }
-
-  getBotResponse(message: string): string {
-    const lowerMessage = message.toLowerCase();
-
-    if (lowerMessage.includes('hello')) return 'Hello! How can I help you?';
-    if (lowerMessage.includes('how are you')) return 'I am just a bot, but I am doing great!';
-    if (lowerMessage.includes('bye')) return 'Goodbye! Have a great day!';
-
-    return 'I am not sure about that. Can you ask something else?';
-  }
- 
 }
+
 

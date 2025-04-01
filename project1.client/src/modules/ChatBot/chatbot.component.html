@@ -1,13 +1,13 @@
 <p>Chatbot</p>
-<div class="chat-container">
+<img src="../../assets/robot.png" width="100px" (click)="chatbotopen()"/>
+<div class="chat-container" *ngIf="openbox">
   <div class="chat-box">
     <div *ngFor="let msg of messages" [ngClass]="msg.sender">
       <p>{{ msg.text }}</p>
     </div>
   </div>
-
   <div class="input-box">
     <input type="text" [(ngModel)]="userInput" placeholder="Type a message..." (keyup.enter)="sendMessage()">
-    <button (click)="sendMessage()">Send</button>
+    <button (click)="sendMessage()" (keyup.enter)="sendMessage()">Send</button>
   </div>
 </div>
