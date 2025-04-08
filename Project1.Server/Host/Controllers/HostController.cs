@@ -35,6 +35,10 @@ public class HostController : ControllerBase
                     instance = new CommponetClass();
                     result = instance.botreply(obj);
                     break;
+                case "search":
+                    instance = new CommponetClass();
+                    result = instance.search(obj);
+                    break;
             }
 
         }

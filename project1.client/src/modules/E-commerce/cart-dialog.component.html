@@ -1,0 +1,12 @@
+<h2>🛒 Your Cart</h2>
+
+<ul>
+  <li *ngFor="let item of data.cartItems ;let i = index">
+    {{ item.name }} - ${{ item.price }}
+    <img [src]="item.image" alt="{{ item.name }}" width="40%" height="10%"/>
+    <i (click)="removeItem(i)" class="btn-red">
+      <i class="fas fa-trash-alt" style="color:red"></i>
+    </i>
+  </li>
+</ul>
+<p> Total price: {{totalPrice}}</p>

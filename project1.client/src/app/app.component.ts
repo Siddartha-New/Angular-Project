@@ -23,17 +23,23 @@ export class AppComponent implements OnInit {
   @ViewChild(MapComponent) mapComponent!: MapComponent;
   list: any;
   menus: any;
+  email: string = '';
+  password: string = '';
   constructor(private http: HttpClient, private route: Router, private hostservice: httpservice) { }
 
-  ngOnInit() {
+  ngOnInit() {  
+    this.menuslist();
+  }
+  menuslist() {
     this.menus = [
-     /* { title: 'Dashboard', url: '/dashboard', icon: 'assets/bus.png' },*/
       { title: 'Map', url: '/map', icon: 'assets/bus.png' },
-      { title: 'Chat', url: '/chat', icon: 'assets/robot.png' }
+      { title: 'Chat', url: '/chat', icon: 'assets/robot.png' },
+      { title: 'Shoping', url: '/ecommerce', icon: 'assets/ecommerceimg.jpg' }
     ];
   }
+  onLogin() {
 
-
+  }
   Tabclick(event: any)
   {
    /* this.mapfun();*/

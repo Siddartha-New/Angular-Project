@@ -7,6 +7,7 @@
         public string Update(object obj);
 
         public string botreply(string obj);
+        public string search(string obj);
 
     }
 }

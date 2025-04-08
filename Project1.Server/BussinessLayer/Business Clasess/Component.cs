@@ -54,11 +54,29 @@ namespace Project1.Server.BussinessLayer
             return obj.ToString();
         }
 
-        public string Update(object obj)
+        public string search(string obj)
         {
             throw new NotImplementedException();
         }
+
+        public string Update(object obj)
+        {
+
+            List<Product> products = new List<Product>
+        {
+            new Product { Id = 1, name = "Phone", price = 499, image = "assets/Phone.jpg" },
+            new Product { Id = 3, name = "Headphones", price = 99, image = "assets/headphone.jpg" },
+            new Product { Id = 1, name = "Robot", price = 499, image = "assets/robot.png" },
+            new Product { Id = 2, name = "Laptop", price = 1299, image = "assets/laptop.jpg" }
+        };
+
+            string jsonPayload = JsonConvert.SerializeObject(products);
+            return jsonPayload.ToString();
+        }
     }
+
+    #region Private Clasess
+
     public class BusRoutePoint
     {
         public double Lat { get; set; }
@@ -70,5 +88,14 @@ namespace Project1.Server.BussinessLayer
         public string message { get; set; }
         
     }
+
+    public class Product
+    {
+        public int Id { get; set; }
+        public string name { get; set; }
+        public decimal price { get; set; }
+        public string image { get; set; }
+    }
+    #endregion
 
 }

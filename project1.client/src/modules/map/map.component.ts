@@ -130,6 +130,7 @@ export class MapComponent implements OnInit {
     { lat: 20.5937, lon: 78.9629 }
   ];
   index = 0;
+
    
   async ngOnInit() {
 
@@ -139,6 +140,7 @@ export class MapComponent implements OnInit {
       "esri/layers/GraphicsLayer",
       "esri/Graphic",
     ]);
+
     const map = new Map({ basemap: "streets-navigation-vector" });
     this.mapView = new MapView({
       container: this.mapViewEl.nativeElement,
