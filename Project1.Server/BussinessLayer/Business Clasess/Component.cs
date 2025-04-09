@@ -25,6 +25,16 @@ namespace Project1.Server.BussinessLayer
             return botReply;
         }
 
+        public string Delete(string obj)
+        {
+            if (!string.IsNullOrEmpty(obj))
+            {
+                
+            }
+            return JsonConvert.SerializeObject(products);
+
+        }
+
         public string fetch(object payload)
         {
             List<BusRoutePoint> busRoute = new List<BusRoutePoint>

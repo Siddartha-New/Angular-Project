@@ -10,6 +10,8 @@
         public string Search(string obj);
         public string FetchAll(string obj);
 
+        public string Delete(string obj);
+
 
     }
 }

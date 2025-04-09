@@ -25,12 +25,16 @@ export class InventoryComponent implements OnInit {
     var payload = JSON.stringify(this.inventoryItems)
     var response = this.service.Insert("CommponetClass", payload, "insert");
     if (response != null) {
+      itemName = '';
+      price = '';
       alert("Product is Updated!")
     }
   }
 
   removeItem(index: number) {
     this.inventoryItems.splice(index, 1);
+    var payload = JSON.stringify(index);
+    var response = this.service.Delete("CommponetClass", payload, "Delete");
   }
 }
 

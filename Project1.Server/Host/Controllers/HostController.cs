@@ -44,6 +44,10 @@ public class HostController : ControllerBase
                     instance = new CommponetClass();
                     result = instance.FetchAll(obj);
                     break;
+                case "Delete":
+                    instance = new CommponetClass();
+                    result = instance.Delete(obj);
+                    break;
             }
 
         }
