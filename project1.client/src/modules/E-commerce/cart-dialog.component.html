@@ -1,12 +1,85 @@
-<h2>🛒 Your Cart</h2>
+<div class="cart-container">
+  <h2>🛒 Your Cart</h2>
 
-<ul>
-  <li *ngFor="let item of data.cartItems ;let i = index">
-    {{ item.name }} - ${{ item.price }}
-    <img [src]="item.image" alt="{{ item.name }}" width="40%" height="10%"/>
-    <i (click)="removeItem(i)" class="btn-red">
-      <i class="fas fa-trash-alt" style="color:red"></i>
-    </i>
-  </li>
-</ul>
-<p> Total price: {{totalPrice}}</p>
+  <ul class="cart-list">
+    <li *ngFor="let item of data.cartItems; let i = index" class="cart-item">
+      <img [src]="item.image" alt="{{ item.name }}" class="cart-img" />
+      <div class="cart-details">
+        <span class="cart-name">{{ item.name }}</span>
+        <span class="cart-price">${{ item.price }}</span>
+      </div>
+      <button (click)="removeItem(i)" class="remove-btn">
+        <i class="fas fa-trash-alt"></i>
+      </button>
+    </li>
+  </ul>
+
+  <p class="total">Total price: <strong>${{ totalPrice }}</strong></p>
+</div>
+<style>
+  .cart-container {
+    padding: 20px;
+    max-width: 700px;
+    margin: auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .cart-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+  }
+
+  .cart-img {
+    width: 80px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .cart-details {
+    flex: 1;
+    padding: 0 15px;
+  }
+
+  .cart-name {
+    display: block;
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .cart-price {
+    color: #e91e63;
+    font-weight: bold;
+  }
+
+  .remove-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: red;
+    transition: transform 0.2s ease;
+  }
+
+    .remove-btn:hover {
+      transform: scale(1.1);
+    }
+
+  .total {
+    text-align: right;
+    font-size: 18px;
+    margin-top: 15px;
+  }
+
+</style>

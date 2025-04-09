@@ -1,31 +1,29 @@
-<!--<input type="" />search-->
 
+<div class="search-container">
+  <i class="fas fa-search search-icon" (click)="search()"></i>
+  <app-text-box label=""
+                placeholder="Search"
+                [(value)]="searchparameter"
+                (input)="inputchange($event)">
+  </app-text-box>
+</div>
 
+<!-- Cart Icon -->
+<div class="cart-icon" (click)="opencart()">
+  <i class="fas fa-shopping-cart"></i>
+  <span class="cart-count">({{ cart.length }})</span>
+</div>
 
-
-
-<button style="float:right" (click)="cardetails()">cartdetails</button>
-<app-text-box label=""
-              placeholder="Search"
-              [(value)]="searchparameter">
-</app-text-box>
+<!-- Product Grid -->
 <div class="product-container">
   <div *ngFor="let product of products" class="product-card">
     <img [src]="product.image" alt="{{ product.name }}" class="product-img" />
     <h3>{{ product.name }}</h3>
-    <p>Price: ${{ product.price }}</p>
-    <button (click)="addToCart(product)">Add to Cart</button>
+    <p class="price">Price: ${{ product.price }}</p>
+    <button class="add-btn" (click)="addToCart(product)">Add to Cart</button>
   </div>
 </div>
-<div style="float:left">
-  <i (click)="opencart()">
-    <i class="fas fa-shopping-cart"></i> Cart
-
-
-    ({{ cart.length }})
-  </i>
-</div>
-
+<app-close></app-close>
 
 
 

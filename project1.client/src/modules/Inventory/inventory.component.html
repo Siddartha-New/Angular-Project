@@ -1,0 +1,125 @@
+<p>inventory</p>
+<app-close></app-close>
+
+<div>
+  <label>Item Name:</label>
+  <input type="text" #itemName />
+
+
+
+  <label>Price:</label>
+  <input #price type="number" />
+
+
+
+  <button (click)="addItem(itemName.value, price.value)">
+    Add Item
+  </button>
+</div>
+
+<hr />
+
+<!-- Inventory Grid -->
+<table border="1" *ngIf="inventoryItems.length > 0">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Item Name</th>
+      <th>Price</th>
+      <th>Total</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of inventoryItems; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ item.itemName }}</td>
+      <td>{{ item.price }}</td>
+      <td>{{ item.quantity * item.price }}</td>
+      <td><button (click)="removeItem(i)">Remove</button></td>
+    </tr>
+  </tbody>
+</table>
+<style>
+  /* Container styling */
+  div {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 16px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  /* Label & input layout */
+  label {
+    display: block;
+    margin-top: 12px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  /* Button styling */
+  button {
+    margin-top: 16px;
+    padding: 10px 16px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+  /* Table styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 24px;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #f1f1f1;
+    font-weight: 600;
+  }
+
+  td button {
+    background-color: #dc3545;
+    padding: 6px 12px;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+    td button:hover {
+      background-color: #c82333;
+    }
+</style>
+

@@ -15,23 +15,36 @@ import { CartDialogComponent } from "./cart-dialog.component";
 export class ecommerceComponent implements OnInit {
   payload: response [] = [];
   openbox: boolean = false;
-  products : any;
+  products : any = [];
   searchparameter: string = '';
+  value: string = '';
+  cart: any[] = [];
+  enable: boolean = false;
   constructor(private service: httpservice, private dialog: MatDialog) { }
   ngOnInit() {
-  //  this.cardetails();
   }
-
-  cardetails() {
-    var response = this.service.Fetch("CommponetClass", 'payload', "Update");
-    setTimeout(() => {
+  inputchange(event:any) {
+    this.value = event.target.value;
+   
+  }
+  search() {
+    this.enable = true;
+    if (this.value.length > 4) {
+      this.products = [];
+      var response = this.service.Search("CommponetClass", this.value, "Search");
       if (response != undefined) {
-        this.products = JSON.parse(response);
+        let data = JSON.parse(response);
+        this.products.push(data);
       }
-    }, 1000);
-
+    }
+    else {
+      var response = this.service.Search("CommponetClass", 'payload', "Fetchall");
+      if (response != undefined) {
+        let data = JSON.parse(response);
+        this.products = data;
+      }
+    }
   }
-  cart: any[] = [];
 
   addToCart(product: any) {
     this.cart.push(product);
@@ -43,8 +56,6 @@ export class ecommerceComponent implements OnInit {
       height:'100%'
     });
   }
-
-  
 }
 
 

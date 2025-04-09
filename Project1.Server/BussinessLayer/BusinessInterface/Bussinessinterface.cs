@@ -3,11 +3,13 @@
     public interface IBussinessinterface
     {
         public string fetch(object obj);
-        public string Insert(object obj);
+        public string Insert(string obj);
         public string Update(object obj);
 
-        public string botreply(string obj);
-        public string search(string obj);
+        public string Botreply(string obj);
+        public string Search(string obj);
+        public string FetchAll(string obj);
+
 
     }
 }

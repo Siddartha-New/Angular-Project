@@ -6,7 +6,16 @@ namespace Project1.Server.BussinessLayer
 {
     public class CommponetClass : IBussinessinterface
     {
-        public string botreply(string obj)
+        #region product list
+        List<Product> products = new List<Product>();
+        //{
+        //    new Product { Id = 1, name = "Phone", price = 499, image = "assets/Phone.jpg" },
+        //    new Product { Id = 3, name = "Headphones", price = 99, image = "assets/headphone.jpg" },
+        //    new Product { Id = 1, name = "Robot", price = 499, image = "assets/robot.png" },
+        //    new Product { Id = 2, name = "Laptop", price = 1299, image = "assets/laptop.jpg" }
+        //};
+        #endregion
+        public string Botreply(string obj)
         {
             List<BotResponse> response = new List<BotResponse>();
             response.Add(new BotResponse { message = "Test" });
@@ -49,29 +58,49 @@ namespace Project1.Server.BussinessLayer
             return jsonPayload.ToString();
         }
 
-        public string Insert(object obj)
+        public string FetchAll(string obj)
         {
-            return obj.ToString();
+            string jsonPayload = JsonConvert.SerializeObject(this.products);
+            return jsonPayload.ToString();
         }
 
-        public string search(string obj)
+        public string Insert(string obj)
         {
-            throw new NotImplementedException();
+            if (obj != null)
+            {
+                List<Product> products = JsonConvert.DeserializeObject<List<Product>>(obj);
+                int index = 0;
+
+                foreach (var product in products)
+                {
+                    index++;
+                    this.products.Add(new Product { Id = index, name = product.name, price = product.price });
+                    
+                }
+            }
+           return JsonConvert.SerializeObject(this.products);
+        }
+
+        public string Search(string obj)
+        {
+            string jsonPayload = string.Empty;
+            if (obj != null)
+            {
+                foreach (var item in products) { 
+                    if(item.name == obj)
+                    {
+
+                        jsonPayload = JsonConvert.SerializeObject(item);
+                        
+                    }
+                }
+            }
+            return jsonPayload.ToString();
         }
 
         public string Update(object obj)
         {
-
-            List<Product> products = new List<Product>
-        {
-            new Product { Id = 1, name = "Phone", price = 499, image = "assets/Phone.jpg" },
-            new Product { Id = 3, name = "Headphones", price = 99, image = "assets/headphone.jpg" },
-            new Product { Id = 1, name = "Robot", price = 499, image = "assets/robot.png" },
-            new Product { Id = 2, name = "Laptop", price = 1299, image = "assets/laptop.jpg" }
-        };
-
-            string jsonPayload = JsonConvert.SerializeObject(products);
-            return jsonPayload.ToString();
+            return obj.ToString();
         }
     }
 

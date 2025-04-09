@@ -19,7 +19,7 @@ interface WeatherForecast {
 })
 export class AppComponent implements OnInit {
   public forecasts: WeatherForecast[] = [];
-  disable :boolean =  false
+  disable: boolean = false
   @ViewChild(MapComponent) mapComponent!: MapComponent;
   list: any;
   menus: any;
@@ -27,24 +27,23 @@ export class AppComponent implements OnInit {
   password: string = '';
   constructor(private http: HttpClient, private route: Router, private hostservice: httpservice) { }
 
-  ngOnInit() {  
+  ngOnInit() {
     this.menuslist();
   }
   menuslist() {
     this.menus = [
       { title: 'Map', url: '/map', icon: 'assets/bus.png' },
       { title: 'Chat', url: '/chat', icon: 'assets/robot.png' },
-      { title: 'Shoping', url: '/ecommerce', icon: 'assets/ecommerceimg.jpg' }
+      { title: 'Shoping', url: '/ecommerce', icon: 'assets/ecommerceimg.jpg' },
+      { title: 'Inventory', url: '/inventory', icon: 'assets/inventory.png' },
     ];
   }
   onLogin() {
 
   }
-  Tabclick(event: any)
-  {
-   /* this.mapfun();*/
-    if (event != undefined)
-    {
+  Tabclick(event: any) {
+    /* this.mapfun();*/
+    if (event != undefined) {
       this.disable = true;
       this.route.navigate([event]);
     }
@@ -52,8 +51,7 @@ export class AppComponent implements OnInit {
   }
   mapfun() {
     let data1 = this.hostservice.Fetch("insert", "payload", "fetch");
-    if (data1 != null)
-    {
+    if (data1 != null) {
 
       this.list = data1;
     }

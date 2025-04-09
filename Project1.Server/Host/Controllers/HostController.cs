@@ -1,6 +1,7 @@
 
 using Csla.Server;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Project1.Server.BussinessLayer;
 using Project1.Server.BussinessLayer.Interface;
 
@@ -13,8 +14,8 @@ public class HostController : ControllerBase
     {
         IBussinessinterface instance = null;
         string result = string.Empty;
-        
 
+        var re = JsonConvert.SerializeObject(obj);
         if (className != null)
         {
             switch (type)
@@ -33,11 +34,15 @@ public class HostController : ControllerBase
                     break;
                 case "botreply":
                     instance = new CommponetClass();
-                    result = instance.botreply(obj);
+                    result = instance.Botreply(obj);
                     break;
-                case "search":
+                case "Search":
                     instance = new CommponetClass();
-                    result = instance.search(obj);
+                    result = instance.Search(obj);
+                    break;
+                case "Fetchall":
+                    instance = new CommponetClass();
+                    result = instance.FetchAll(obj);
                     break;
             }
 

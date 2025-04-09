@@ -12,7 +12,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { CartDialogComponent } from '../modules/E-commerce/cart-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { TextBoxComponent } from '../controls/text-box.component';
+
+import { InventoryComponent } from '../modules/Inventory/inventory.component';
+import { TextBoxComponent } from '../controls/textboxes/text-box.component';
+import { CloseBtnComponent } from '../controls/Buttons/close-btn/close-btn.component';
 
 
 
@@ -21,7 +24,10 @@ const routes: Routes = [
   { path: 'map', component: MapComponent },
   { path: 'dashboard', component: DashBoardComponent },
   { path: 'chat', component: chatbotComponent },
-  { path: 'ecommerce', component: ecommerceComponent },// Route for MapComponent
+  { path: 'ecommerce', component: ecommerceComponent },
+  { path: 'inventory', component: InventoryComponent },
+  { path: 'app', component: AppComponent }, 
+  // Route for MapComponent
 ];
 
 @NgModule({
@@ -32,7 +38,9 @@ const routes: Routes = [
     chatbotComponent,
     ecommerceComponent,
     CartDialogComponent,
-    TextBoxComponent
+    TextBoxComponent,
+    InventoryComponent,
+    CloseBtnComponent
     
   ],
   imports: [
