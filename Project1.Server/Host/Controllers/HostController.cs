@@ -2,6 +2,7 @@
 using Csla.Server;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Project1.Server;
 using Project1.Server.BussinessLayer;
 using Project1.Server.BussinessLayer.Interface;
 
@@ -21,32 +22,28 @@ public class HostController : ControllerBase
             switch (type)
             {
                 case "insert":
-                    instance = new CommponetClass();
-                    result = instance.Insert(obj);
+                    instance = new BusinessClass();
+                    result = instance.Insert(obj, className);
                     break;
                 case "Update":
-                    instance = new CommponetClass();
-                    result = instance.Update(obj);
+                    instance = new BusinessClass();
+                    result = instance.Update(obj, className);
                     break;
                 case "fetch":
-                    instance = new CommponetClass();
-                    result =  instance.fetch(obj);
-                    break;
-                case "botreply":
-                    instance = new CommponetClass();
-                    result = instance.Botreply(obj);
+                    instance = new BusinessClass();
+                    result =  instance.fetch(obj, className);
                     break;
                 case "Search":
-                    instance = new CommponetClass();
-                    result = instance.Search(obj);
+                    instance = new BusinessClass();
+                    result = instance.Search(obj, className);
                     break;
                 case "Fetchall":
-                    instance = new CommponetClass();
-                    result = instance.FetchAll(obj);
+                    instance = new BusinessClass();
+                    result = instance.FetchAll(obj, className);
                     break;
                 case "Delete":
-                    instance = new CommponetClass();
-                    result = instance.Delete(obj);
+                    instance = new BusinessClass();
+                    result = instance.Delete(obj, className);
                     break;
             }
 

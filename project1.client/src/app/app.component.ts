@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { log } from 'console';
+import { PassThrough } from 'stream';
 import { httpservice } from '../host/httpservice';
 import { MapComponent } from '../modules/map/map.component';
 
@@ -23,40 +25,57 @@ export class AppComponent implements OnInit {
   @ViewChild(MapComponent) mapComponent!: MapComponent;
   list: any;
   menus: any;
-  email: string = '';
+  username: string = '';
   password: string = '';
+  loginsession: any = [];
+    enableregister: boolean = false;
   constructor(private http: HttpClient, private route: Router, private hostservice: httpservice) { }
-
   ngOnInit() {
-    this.menuslist();
-  }
-  menuslist() {
-    this.menus = [
-      { title: 'Map', url: '/map', icon: 'assets/bus.png' },
-      { title: 'Chat', url: '/chat', icon: 'assets/robot.png' },
-      { title: 'Shoping', url: '/ecommerce', icon: 'assets/ecommerceimg.jpg' },
-      { title: 'Inventory', url: '/inventory', icon: 'assets/inventory.png' },
-    ];
-  }
-  onLogin() {
 
   }
-  Tabclick(event: any) {
-    /* this.mapfun();*/
-    if (event != undefined) {
-      this.disable = true;
-      this.route.navigate([event]);
+
+  onLogin(event: any) {
+    const obj = {
+      username: this.username,
+      password: this.password,
+    };
+    this.loginsession.push(obj)
+    var payload = JSON.stringify(this.loginsession)
+
+    if (event == "register") {
+      this.hostservice.Insert('LoginSession', payload, 'insert')
+      this.username = "";
+      this.password = "";
+      this.enableregister = false;
+      alert('Register Successful!');
+  
+    }
+    if (event == "login") {
+      var dta = this.hostservice.Fetch('LoginSession', payload, 'Fetchall')
+      if (dta == "Data Found")
+      {
+        this.username = "";
+        this.password = "";
+        this.disable = true;
+        alert('Logged in successfully!');
+        this.route.navigate(['dashboard']);
+      }
+      else {
+        alert('Logged in Failed!');
+      }
     }
 
-  }
-  mapfun() {
-    let data1 = this.hostservice.Fetch("insert", "payload", "fetch");
-    if (data1 != null) {
 
-      this.list = data1;
-    }
-    //this.route.navigate(["map"]);
-    //this.disable = true;
+
   }
+  showPassword = false;
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
+  trigger() {
+    this.enableregister = true;
+  }
+
 
 }

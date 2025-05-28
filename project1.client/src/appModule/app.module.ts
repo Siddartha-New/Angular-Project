@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from '../app/app.component';
 import { chatbotComponent } from '../modules/ChatBot/chatbot.component';
-import { DashBoardComponent } from '../modules/Dashboard/dashBoard.component';
 import { ecommerceComponent } from '../modules/E-commerce/ecommerce.component';
 import { MapComponent } from '../modules/map/map.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +15,16 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { InventoryComponent } from '../modules/Inventory/inventory.component';
 import { TextBoxComponent } from '../controls/textboxes/text-box.component';
 import { CloseBtnComponent } from '../controls/Buttons/close-btn/close-btn.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
+import { DashBoardComponent } from '../DashBoard/DashBoard.component';
+
+
+
 
 
 
@@ -40,7 +49,7 @@ const routes: Routes = [
     CartDialogComponent,
     TextBoxComponent,
     InventoryComponent,
-    CloseBtnComponent
+    CloseBtnComponent,
     
   ],
   imports: [
@@ -50,7 +59,13 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
-    MatDialogModule// <-- REQUIRED for Material dialogs to animate
+    MatDialogModule,// <-- REQUIRED for Material dialogs to animate,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

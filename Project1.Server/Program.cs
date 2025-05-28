@@ -27,7 +27,12 @@ namespace AngularApp1.Server
                               .AllowAnyHeader();
                     });
             });
+            var config = new ConfigurationBuilder()
+                     .AddJsonFile("appsettings.json")
+                     .Build();
 
+            string connectionString = config.GetConnectionString("DefaultConnection");
+           // Console.WriteLine($"Connection string: {connectionString}");
             var app = builder.Build();
 
             app.UseDefaultFiles();

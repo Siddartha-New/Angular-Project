@@ -26,6 +26,7 @@
     "@arcgis/core": "^4.32.9",
     "esri-loader": "^3.7.0",
     "jest-editor-support": "*",
+    "ngx-image-compress": "^18.1.5",
     "run-script-os": "*",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

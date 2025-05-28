@@ -6,24 +6,32 @@ import { httpservice } from "../../host/httpservice";
   templateUrl: './inventory.component.html',
 })
 export class InventoryComponent implements OnInit {
-
+  
+  inventoryItems: any[] = [];
   constructor(private service: httpservice) { }
 
   ngOnInit() {
   }
-  inventoryItems: any[] = [];
-
-  addItem(itemName: string, price: string) {
+  
+  Fetch() {
+    var response = this.service.Search("Ecommerceservice", 'empty', "Search");
+    if (response != undefined) {
+      let data = JSON.parse(response);
+      this.inventoryItems.push(data);
+    }
+  }
+  addItem(itemName: string, price: string,quantity:string) {
     if (!itemName || !price) return;
 
     const newItem = {
       name: itemName.trim(),
       price: parseFloat(price),
+      quantity: quantity,
     };
 
     this.inventoryItems.push(newItem);
     var payload = JSON.stringify(this.inventoryItems)
-    var response = this.service.Insert("CommponetClass", payload, "insert");
+    var response = this.service.Insert("InventoryService", payload, "insert");
     if (response != null) {
       itemName = '';
       price = '';

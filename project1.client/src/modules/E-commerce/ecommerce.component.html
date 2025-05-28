@@ -17,12 +17,15 @@
 <!-- Product Grid -->
 <div class="product-container">
   <div *ngFor="let product of products" class="product-card">
-    <img [src]="product.image" alt="{{ product.name }}" class="product-img" />
+    <img [src]="product.image" alt="{{ product.name }}" />
     <h3>{{ product.name }}</h3>
     <p class="price">Price: ${{ product.price }}</p>
+    <p class="price">Quantity: ${{ product.quantity }}</p>
     <button class="add-btn" (click)="addToCart(product)">Add to Cart</button>
   </div>
 </div>
+
+
 <app-close></app-close>
 
 

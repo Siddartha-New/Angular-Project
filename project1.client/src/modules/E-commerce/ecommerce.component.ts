@@ -20,6 +20,7 @@ export class ecommerceComponent implements OnInit {
   value: string = '';
   cart: any[] = [];
   enable: boolean = false;
+    image: any;
   constructor(private service: httpservice, private dialog: MatDialog) { }
   ngOnInit() {
   }
@@ -29,16 +30,16 @@ export class ecommerceComponent implements OnInit {
   }
   search() {
     this.enable = true;
-    if (this.value.length > 4) {
+    if (this.value != null && this.value != '') {
       this.products = [];
-      var response = this.service.Search("CommponetClass", this.value, "Search");
+      var response = this.service.Search("Ecommerceservice", this.value, "Search");
       if (response != undefined) {
         let data = JSON.parse(response);
         this.products.push(data);
       }
     }
     else {
-      var response = this.service.Search("CommponetClass", 'payload', "Fetchall");
+      var response = this.service.Search("Ecommerceservice", 'empty', "Fetchall");
       if (response != undefined) {
         let data = JSON.parse(response);
         this.products = data;

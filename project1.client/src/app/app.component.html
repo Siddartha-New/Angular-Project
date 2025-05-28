@@ -1,25 +1,44 @@
 
 <router-outlet></router-outlet>
-<!--<div style="align-items: center; margin-top: 190px">
-  <button (click)="mapfun()">
-  <i class="fa fa-map-marker-alt"></i> ClickMap
-  </button>
+
+
+
+
+
+
+
+<div class="login-container" *ngIf="!disable">
+
+  <form #loginForm="ngForm" class="login-form">
+    <h2 *ngIf="!enableregister">Login</h2>
+    <h2 *ngIf="enableregister">Register</h2>
+
+    <div class="input-group">
+      <input type="text"
+             id="username"
+             name="username"
+             [(ngModel)]="username"
+             placeholder=" "
+             required />
+      <label for="username">Username</label>
+    </div>
+
+    <div class="input-group">
+      <input [type]="showPassword ? 'text' : 'password'"
+             id="password"
+             name="password"
+             [(ngModel)]="password"
+             placeholder=" "
+             required />
+      <label for="password">Password</label>
+      <span class="toggle-password" (click)="togglePassword()">👁</span>
+    </div>
+
+    <button type="submit" class="login-btn" (click)="onLogin('register')" *ngIf="enableregister">Register</button>
+
+    <button type="submit" class="login-btn" (click)="onLogin('login')" *ngIf="!enableregister">Login</button>
+
+    <li (click)="trigger()">Register</li>
+  </form>
 </div>
-
-<p >{{list}}</p>-->
-
-
-<div class="menu-container" *ngIf="!disable">
-  <ul class="menu-list">
-    <li *ngFor="let menu of menus" class="menu-item">
-      <a [routerLink]="menu.url" class="menu-link" (click)="Tabclick(menu.url)">
-        <img [src]="menu.icon" width="100">
-        {{ menu.title }}
-      </a>
-    </li>
-  </ul>
-</div>
-
-
-
 

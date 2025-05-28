@@ -10,15 +10,18 @@
   <label>Price:</label>
   <input #price type="number" />
 
+  <label>Quantity:</label>
+  <input #quantity type="number" />
 
 
-  <button (click)="addItem(itemName.value, price.value)">
+
+  <button (click)="addItem(itemName.value, price.value,quantity.value)">
     Add Item
   </button>
 </div>
 
 <hr />
-
+<button (click)="Fetch()">FetchRecords</button>
 <!-- Inventory Grid -->
 <table border="1" *ngIf="inventoryItems.length > 0">
   <thead>

@@ -2,15 +2,13 @@
 {
     public interface IBussinessinterface
     {
-        public string fetch(object obj);
-        public string Insert(string obj);
-        public string Update(object obj);
+        public string fetch(object obj,string classname);
+        public string Insert(string obj,string classname);
+        public string Update(object obj, string classname);
+        public string Search(string obj, string classname);
+        public string FetchAll(string obj, string classname);
 
-        public string Botreply(string obj);
-        public string Search(string obj);
-        public string FetchAll(string obj);
-
-        public string Delete(string obj);
+        public string Delete(string obj, string classname);
 
 
     }
