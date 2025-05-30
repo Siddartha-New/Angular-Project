@@ -8,11 +8,24 @@ import { httpservice } from "../../host/httpservice";
 export class InventoryComponent implements OnInit {
   
   inventoryItems: any[] = [];
+    selectedImageFile: any;
+    previewImage: string | ArrayBuffer | null = '';
   constructor(private service: httpservice) { }
 
   ngOnInit() {
   }
-  
+  onImageSelected(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedImageFile = file;
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.previewImage = reader.result;
+      };
+      reader.readAsDataURL(file); // base64
+    }
+  }
   Fetch() {
     var response = this.service.Search("Ecommerceservice", 'empty', "Search");
     if (response != undefined) {
@@ -27,6 +40,7 @@ export class InventoryComponent implements OnInit {
       name: itemName.trim(),
       price: parseFloat(price),
       quantity: quantity,
+      image: this.previewImage || null
     };
 
     this.inventoryItems.push(newItem);

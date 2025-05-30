@@ -1,5 +1,5 @@
 
-<div class="search-container">
+<div class="container">
   <i class="fas fa-search search-icon" (click)="search()"></i>
   <app-text-box label=""
                 placeholder="Search"
@@ -15,7 +15,7 @@
 </div>
 
 <!-- Product Grid -->
-<div class="product-container">
+<div class="product-grid">
   <div *ngFor="let product of products" class="product-card">
     <img [src]="product.image" alt="{{ product.name }}" />
     <h3>{{ product.name }}</h3>
@@ -26,7 +26,7 @@
 </div>
 
 
-<app-close></app-close>
+<!--<app-close></app-close>-->
 
 
 

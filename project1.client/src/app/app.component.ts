@@ -48,6 +48,7 @@ export class AppComponent implements OnInit {
       this.password = "";
       this.enableregister = false;
       alert('Register Successful!');
+      this.loginsession = [];
   
     }
     if (event == "login") {
@@ -59,6 +60,7 @@ export class AppComponent implements OnInit {
         this.disable = true;
         alert('Logged in successfully!');
         this.route.navigate(['dashboard']);
+        this.loginsession = [];
       }
       else {
         alert('Logged in Failed!');
