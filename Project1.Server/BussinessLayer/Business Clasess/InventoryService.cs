@@ -63,7 +63,7 @@ namespace Project1.Server
                         prod.name = product.name;
                         prod.price = product.price;
                         prod.quantity = product.quantity;
-                        prod.image = "Not-There";
+                        prod.image = product.image;
                         _ctx.Products.Add(prod);
                         _ctx.SaveChanges();
                     }

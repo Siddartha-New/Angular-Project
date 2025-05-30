@@ -24,7 +24,7 @@ namespace Project1.Server
             {
                 foreach (var items in details)
                 {
-                    var data = _ctx.loginsessionDetails.Where(c => c.username == items.username).First();
+                    var data = _ctx.loginsessionDetails.Where(c => c.username == items.username).FirstOrDefault();
                     if (data != null)
                     {
                         message = "Data Found";
@@ -60,7 +60,6 @@ namespace Project1.Server
                         _ctx.loginsessionDetails.Add(sessionDetails);
                         _ctx.SaveChanges();
                     }
-                    _ctx.Dispose();
                 }
 
             }
