@@ -32,21 +32,7 @@ namespace Project1.Server
 
             var logic = GetBusinessLogic(classname);
             logic.fetch(payload, classname);
-            #region map
-            List<BusRoutePoint> busRoute = new List<BusRoutePoint>
-            {
-                new BusRoutePoint { Lat = 20.5937, Lon = 78.9629 },
-                new BusRoutePoint { Lat = 20.5950, Lon = 78.9700 },
-                new BusRoutePoint { Lat = 20.2100, Lon = 78.9800 },
-                new BusRoutePoint { Lat = 20.6300, Lon = 8.910 },
-                new BusRoutePoint { Lat = 20.600, Lon = 78.9100 },
-                new BusRoutePoint { Lat = 20.6510, Lon = 78.9200 },
-                new BusRoutePoint { Lat = 20.6250, Lon = 78.2010 },
-                new BusRoutePoint { Lat = 2.6250, Lon = 12.92010 }
-            };
-            #endregion
-
-            return JsonConvert.SerializeObject(busRoute);
+            return JsonConvert.SerializeObject(logic);
         }
 
         public string FetchAll(string obj, string classname)

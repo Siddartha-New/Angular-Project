@@ -7,7 +7,14 @@
 
 
 <p *ngIf="distance !== null">Distance: {{ distance.toFixed(2) }} km</p>-->
+<!-- Inputs for coordinates -->
+<input type="text" [(ngModel)]="long" placeholder="Longitude">
+<input type="text" [(ngModel)]="lat" placeholder="Latitude">
 
-<button (click)="trackBus()">track</button>
+<!-- Buttons -->
+<button (click)="trackBus()">Track</button>
+<button (click)="save()">Save</button>
+
+
 <div #mapViewDiv style="height: 500px;"></div>
-<app-close></app-close>
+<!--<app-close></app-close>-->

@@ -23,8 +23,8 @@ export class DashBoardComponent {
 
   menuslist() {
     this.menus = [
-      /* { title: 'Map', url: '/map', icon: 'assets/bus.png' },*/
-      { title: 'Chat', url: '/chat', icon: 'assets/robot.png' },
+       { title: 'Map', url: '/map', icon: 'assets/bus.png' },
+      //{ title: 'Chat', url: '/chat', icon: 'assets/robot.png' },
       { title: 'Shoping', url: '/ecommerce', icon: 'assets/ecommerceimg.jpg' },
       { title: 'Inventory', url: '/inventory', icon: 'assets/inventory.png' },
     ];

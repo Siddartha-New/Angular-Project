@@ -53,6 +53,7 @@ export class AppComponent implements OnInit {
     }
     if (event == "login") {
       var dta = this.hostservice.Fetch('LoginSession', payload, 'Fetchall')
+      this.hostservice.sleep(2000)
       if (dta == "Data Found")
       {
         this.username = "";
@@ -70,6 +71,7 @@ export class AppComponent implements OnInit {
 
 
   }
+
   showPassword = false;
 
   togglePassword() {

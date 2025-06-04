@@ -18,10 +18,10 @@ export class httpservice {
 
   }
 
-  Fetch(classname:any,obj:any,type:any): any {
+  Fetch(classname: any, obj: any, type: any): any {
     /* <WeatherForecast[]>*/
     try {
-      this.http.get(this.api + "?classname=" + classname+"&obj=" + obj + "&type=" + type, httpOptions).subscribe(
+      this.http.get(this.api + "?classname=" + classname + "&obj=" + obj + "&type=" + type, httpOptions).subscribe(
         (response) => {
           this.result = response;
         },
@@ -45,8 +45,7 @@ export class httpservice {
         }
       );
     }
-    catch (ex)
-    {
+    catch (ex) {
 
     }
     return this.result;
@@ -100,6 +99,10 @@ export class httpservice {
 
     }
     return this.result;
+  }
+
+  sleep(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 }
 

@@ -4,6 +4,7 @@ public class Context : DbContext
 {
     public DbSet<Product> Products { get; set; }
     public DbSet<LoginSessionDetails> loginsessionDetails { get; set; }
+    public DbSet<MapView> mapview { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

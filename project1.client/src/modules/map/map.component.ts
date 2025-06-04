@@ -121,8 +121,10 @@ import { httpservice } from "../../host/httpservice";
 export class MapComponent implements OnInit {
   @ViewChild("mapViewDiv", { static: true }) private mapViewEl!: ElementRef;
   busroute: BusRoutePoint[] = [];
+  dataItems: any[] = [];
   constructor(private hostservice: httpservice) { }
-
+  long: any;
+  lat: any;
   mapView: any;
   graphicsLayer: any;
   busGraphic: any;
@@ -164,15 +166,22 @@ export class MapComponent implements OnInit {
     this.graphicsLayer.add(this.busGraphic);
     //this.trackBus();
   }
-
+  save() {
+    const newItem = {
+      lat: this.lat,
+      lon: this.long,
+    };
+    this.dataItems.push(newItem);
+    var payload = JSON.stringify(this.dataItems)
+    let data = this.hostservice.Fetch("ArcgisApplication", payload, "insert");
+    if (data != undefined) {
+      alert("data is saved!")
+    }
+  }
   async trackBus() {
-    setInterval(() => {
-      let data = this.hostservice.Fetch("CommponetClass", "payload", "fetch");
-      this.busroute = JSON.parse(data);
-      this.busroute.forEach((point) => {
-          this.updateBusLocation(point.Lat, point.Lon)
-      }, 5000)
-    });
+    let data = this.hostservice.Search("ArcgisApplication", "search", "Fetchall");
+    this.hostservice.sleep(2000);
+    this.busroute = JSON.parse(data);
   }
 
   async updateBusLocation(lat: any, lon: number) {

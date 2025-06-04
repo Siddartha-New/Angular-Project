@@ -12,3 +12,9 @@ public class LoginSessionDetails
     public string username { get; set; }
     public string password { get; set; }
 }
+public class MapView
+{
+    public int ID { get; set; }
+    public string lat { get; set; }
+    public string lon { get; set; }
+}
