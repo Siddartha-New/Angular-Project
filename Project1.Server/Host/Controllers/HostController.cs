@@ -16,7 +16,7 @@ public class HostController : ControllerBase
         IBussinessinterface instance = null;
         string result = string.Empty;
 
-        var re = JsonConvert.SerializeObject(obj);
+        
         if (className != null)
         {
             switch (type)

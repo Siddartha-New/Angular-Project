@@ -44,7 +44,7 @@ namespace Project1.Server
                         _ctx.mapview.Add(map);
                         _ctx.SaveChanges();
                     }
-                    //_ctx.Dispose();
+                    _ctx.Dispose();
                 }
 
             }

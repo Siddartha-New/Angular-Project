@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
 
   }
 
-  onLogin(event: any) {
+  async onLogin(event: any) {
     const obj = {
       username: this.username,
       password: this.password,
@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
     }
     if (event == "login") {
       var dta = this.hostservice.Fetch('LoginSession', payload, 'Fetchall')
-      this.hostservice.sleep(2000)
+      await this.sleep(2000);
       if (dta == "Data Found")
       {
         this.username = "";
@@ -73,6 +73,10 @@ export class AppComponent implements OnInit {
   }
 
   showPassword = false;
+
+  sleep(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
   togglePassword() {
     this.showPassword = !this.showPassword;

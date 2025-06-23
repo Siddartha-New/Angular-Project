@@ -1,6 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { loadModules } from "esri-loader/dist/esm/modules";
 import { httpservice } from "../../host/httpservice";
+import Point from "@arcgis/core/geometry/Point";
+import PictureMarkerSymbol from "@arcgis/core/symbols/PictureMarkerSymbol";
+import Graphic from "@arcgis/core/Graphic";
 
 
 @Component({
@@ -181,19 +184,42 @@ export class MapComponent implements OnInit {
   async trackBus() {
     let data = this.hostservice.Search("ArcgisApplication", "search", "Fetchall");
     this.hostservice.sleep(2000);
-    this.busroute = JSON.parse(data);
+    var payload = JSON.parse(data);
+    this.busroute = payload;
+
+    for (const item of payload) {
+      await this.sleep(10000);
+      await this.updateBusLocation(parseFloat(item.lat), parseFloat(item.lon));
+    }
+
+
+
   }
 
-  async updateBusLocation(lat: any, lon: number) {
-    this.busGraphic.geometry = { type: "point", longitude: lon + "00", latitude: lat + "00" };
+  async updateBusLocation(lat: number, lon: number) {
+    const point = new Point({
+      latitude: lat,
+      longitude: lon
+    });
+
+    const busSymbol = new PictureMarkerSymbol({
+      url: "https://static.arcgis.com/images/Symbols/Transportation/Bus.png", // Replace with your icon if needed
+      width: "24px",
+      height: "24px"
+    });
+
+    this.busGraphic.geometry = point;
+    this.busGraphic.symbol = busSymbol;
+
     try {
-      // Wait for the map animation to complete
+      // Animate the map to center on the bus
       await this.mapView.goTo({ center: [lon, lat], zoom: 12 }, { animate: true });
-    } catch (error)
-    {
-      
+    } catch (error) {
+      console.error("Map animation failed:", error);
     }
-   
+  }
+  sleep(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
 }
